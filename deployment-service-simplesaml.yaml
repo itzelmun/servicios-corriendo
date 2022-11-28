@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pruebacicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pruebacicd
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: pruebacicd
+        role: pruebacicd
+    spec:
+      containers:
+        - name: pruebacicd
+          image: itzelmunguia/pruebacicd:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: pruebacicd
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pruebacicd
+  labels:
+    app: pruebacicd
+spec:
+  selector:
+   app: pruebacicd
+  type: LoadBalancer
+  ports:
+   - name: http
+     port: 80
+     protocol: TCP
+     targetPort: 80
+  selector:
+    role: pruebacicd

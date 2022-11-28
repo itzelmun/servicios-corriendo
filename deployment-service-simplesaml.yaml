@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pruebacicd
+  name: servicios
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pruebacicd
+      app: servicios
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -15,27 +15,27 @@ spec:
   template:
     metadata:
       labels:
-        app: pruebacicd
-        role: pruebacicd
+        app: servicios
+        role: servicios
     spec:
       containers:
-        - name: pruebacicd
-          image: itzelmunguia/pruebacicd:latest
+        - name: servicios
+          image: itzelmunguia/servicios:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
-              name: pruebacicd
+              name: servicios
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: pruebacicd
+  name: servicios
   labels:
-    app: pruebacicd
+    app: servicios
 spec:
   selector:
-   app: pruebacicd
+   app: servicios
   type: LoadBalancer
   ports:
    - name: http
@@ -43,4 +43,4 @@ spec:
      protocol: TCP
      targetPort: 80
   selector:
-    role: pruebacicd
+    role: servicios

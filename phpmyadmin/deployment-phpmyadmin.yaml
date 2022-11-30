@@ -12,7 +12,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dep-phpmyadmin
+  name: deployment-phpmyadmin-servicios
   labels:
     app: phpmyadmin2
 spec:
@@ -27,12 +27,12 @@ spec:
     spec:
       containers:
         - name: phpmyadmin2
-          image: itzelmunguia/servicios-phpmyadmin:latest
+          image: itzelmunguia/demo-phpmyadmin:latest
           ports:
             - containerPort: 80
           env:
             - name: PMA_HOST
-              value: mysql2
+              value: mysql2-servicios
             - name: PMA_PORT
               value: "3306"
             - name: MYSQL_ROOT_PASSWORD
@@ -46,10 +46,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: servicios-phpmyadmin
+  name: service-phpmyadmin-servicios
 spec:
-  type: ClusterIP
- # loadBalancerIP: 148.213.1.151
+  type: LoadBalancer
+  loadBalancerIP: 148.213.1.152
   selector:
     app: phpmyadmin2
   ports:

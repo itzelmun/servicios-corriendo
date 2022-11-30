@@ -24,21 +24,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql2
+  name: deployment-mysql2-servicios
   labels:
-    app: mysql2
+    app: mysql2-servicios
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql2
+      app: mysql2-servicios
   template:
     metadata:
       labels:
-        app: mysql2
+        app: mysql2-servicios
     spec:
       containers:
-        - name: mysql2
+        - name: mysql2-servicios
           image: mysql:8.0
           ports:
             - containerPort: 3306
@@ -61,12 +61,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql2
+  name: mysql2-servicios
 spec:
-  # type: ClusterIP
-  # loadBalancerIP: 148.213.1.151
+  type: LoadBalancer
+  loadBalancerIP: 148.213.1.153
   selector:
-    app: mysql2
+    app: mysql2-servicios
   ports:
   - protocol: TCP
     port: 3306

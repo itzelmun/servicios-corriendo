@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: servicios
-          image: itzelmunguia/servicios:alpine
+          image: itzelmunguia/servicios:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80

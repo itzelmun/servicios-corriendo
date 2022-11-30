@@ -36,18 +36,7 @@ pipeline {
           }
         }
       }
-    }
-    
-    stages {
-       
-        stage("Run MySQL") {
-            steps {
-                script {
-                    docker.image('mysql:8.0').withRun('-p 3306:3306 -e "MYSQL_ROOT_PASSWORD=root"', 'MYSQL_PASSWORD=bWktY29udHJhc2XDsWEtc2VndXJh', 'MYSQL_USER=root')
-        
-                }
-            }
-        }
+   }
 
     stage('Deploying App to Kubernetes') {
       steps {

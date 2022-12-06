@@ -35,7 +35,7 @@ metadata:
     app: servicios
 spec:
   type: LoadBalancer
-  loadBalancerIP: 148.213.1.156
+  loadBalancerIP: 148.213.1.154
   selector:
    app: servicios
   ports:

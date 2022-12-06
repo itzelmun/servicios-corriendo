@@ -64,7 +64,7 @@ metadata:
   name: mysql2-servicios
 spec:
   type: LoadBalancer
-  loadBalancerIP: 148.213.1.153
+  loadBalancerIP: 148.213.1.155
   selector:
     app: mysql2-servicios
   ports:

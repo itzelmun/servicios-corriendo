@@ -49,7 +49,7 @@ metadata:
   name: service-phpmyadmin-servicios
 spec:
   type: LoadBalancer
-  loadBalancerIP: 148.213.1.152
+  loadBalancerIP: 148.213.1.156
   selector:
     app: phpmyadmin2
   ports:
